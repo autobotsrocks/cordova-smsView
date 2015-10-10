@@ -4,7 +4,6 @@
 @implementation SmsView
 
 -(void)open:(CDVInvokedUrlCommand *)command {
-
     [self.commandDelegate runInBackground:^{
         MFMessageComposeViewController* picker = [[MFMessageComposeViewController alloc] init];
         picker.messageComposeDelegate = self;
@@ -14,8 +13,7 @@
     }];
 }
 
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     [self.viewController dismissViewControllerAnimated:NO completion:nil];
 }
 @end
