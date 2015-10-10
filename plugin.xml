@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="com.autobots.cordova.smsView"
+  version="0.0.1">
+  <name>Open system sms view for android and ios</name>
+  <description>
+    A cordova plugin that provides the functionality to open system sms view for android and ios.
+  </description>
+
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+
+  <js-module src="www/SmsView.js" name="SmsView">
+    <clobbers target="autobots.smsView" />
+  </js-module>
+
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="SmsView">
+        <param name="android-package" value="com.autobots.SmsView"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/com/autobots/SmsView.java" target-dir="src/com/autobots"/>
+  </platform>
+</plugin>
