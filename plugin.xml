@@ -18,6 +18,19 @@
     <clobbers target="autobots.smsView" />
   </js-module>
 
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="SmsView">
+        <param name="ios-package" value="SmsView"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/SmsView.h"/>
+    <source-file src="src/ios/SmsView.m"/>
+    <framework src="MessageUI.framework" weak="true"/>
+  </platform>
+
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="SmsView">
