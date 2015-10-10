@@ -11,11 +11,18 @@ import org.json.JSONException;
 public class SmsView extends CordovaPlugin {
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         if (action.equals("open")) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setType("vnd.android-dir/mms-sms");
-            intent.putExtra("address", args.getJSONArray(0).join(";"));
-            intent.putExtra("sms_body", args.getString(1));
-            cordova.getActivity().startActivity(intent);
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setType("vnd.android-dir/mms-sms");
+                        intent.putExtra("address", args.getJSONArray(0).join(";"));
+                        intent.putExtra("sms_body", args.getString(1));
+                        cordova.getActivity().startActivity(intent);
+                    } catch (JSONException e) {
+                    }
+                }
+            });
         }
         return true;
     }
